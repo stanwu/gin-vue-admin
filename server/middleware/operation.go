@@ -3,6 +3,7 @@ package middleware
 import (
 	"bytes"
 	"encoding/json"
+	constant "github.com/flipped-aurora/gin-vue-admin/server/const"
 	"io"
 	"net/http"
 	"net/url"
@@ -60,7 +61,7 @@ func OperationRecord() gin.HandlerFunc {
 		if claims != nil && claims.BaseClaims.ID != 0 {
 			userId = int(claims.BaseClaims.ID)
 		} else {
-			id, err := strconv.Atoi(c.Request.Header.Get("x-user-id"))
+			id, err := strconv.Atoi(c.Request.Header.Get(constant.REQUEST_USER_ID))
 			if err != nil {
 				userId = 0
 			}

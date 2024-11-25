@@ -2,6 +2,7 @@ package middleware
 
 import (
 	"bytes"
+	constant "github.com/flipped-aurora/gin-vue-admin/server/const"
 	"io"
 	"strconv"
 	"time"
@@ -25,7 +26,7 @@ func ErrorToEmail() gin.HandlerFunc {
 		if claims.Username != "" {
 			username = claims.Username
 		} else {
-			id, _ := strconv.Atoi(c.Request.Header.Get("x-user-id"))
+			id, _ := strconv.Atoi(c.Request.Header.Get(constant.REQUEST_USER_ID))
 			user, err := userService.FindUserById(id)
 			if err != nil {
 				username = "Unknown"

@@ -1,7 +1,7 @@
 package response
 
 import (
-	_const "github.com/flipped-aurora/gin-vue-admin/server/const"
+	"github.com/flipped-aurora/gin-vue-admin/server/const"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -23,37 +23,37 @@ func Result(code int, data interface{}, msg string, c *gin.Context) {
 }
 
 func Ok(c *gin.Context) {
-	Result(_const.SUCCESS, map[string]interface{}{}, "操作成功", c)
+	Result(constant.SUCCESS, map[string]interface{}{}, "操作成功", c)
 }
 
 func OkWithMessage(message string, c *gin.Context) {
-	Result(_const.SUCCESS, map[string]interface{}{}, message, c)
+	Result(constant.SUCCESS, map[string]interface{}{}, message, c)
 }
 
 func OkWithData(data interface{}, c *gin.Context) {
-	Result(_const.SUCCESS, data, "成功", c)
+	Result(constant.SUCCESS, data, "成功", c)
 }
 
 func OkWithDetailed(data interface{}, message string, c *gin.Context) {
-	Result(_const.SUCCESS, data, message, c)
+	Result(constant.SUCCESS, data, message, c)
 }
 
 func Fail(c *gin.Context) {
-	Result(_const.ERROR, map[string]interface{}{}, "操作失败", c)
+	Result(constant.ERROR, map[string]interface{}{}, "操作失败", c)
 }
 
 func FailWithMessage(message string, c *gin.Context) {
-	Result(_const.ERROR, map[string]interface{}{}, message, c)
+	Result(constant.ERROR, map[string]interface{}{}, message, c)
 }
 
 func NoAuth(message string, c *gin.Context) {
 	c.JSON(http.StatusUnauthorized, Response{
-		_const.JWT_NO_AUTH,
+		constant.JWT_NO_AUTH,
 		nil,
 		message,
 	})
 }
 
 func FailWithDetailed(data interface{}, message string, c *gin.Context) {
-	Result(_const.ERROR, data, message, c)
+	Result(constant.ERROR, data, message, c)
 }

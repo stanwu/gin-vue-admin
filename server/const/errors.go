@@ -1,4 +1,4 @@
-package _const
+package constant
 
 const (
 	JWT_NO_AUTH = 6

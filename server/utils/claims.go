@@ -1,7 +1,7 @@
 package utils
 
 import (
-	_const "github.com/flipped-aurora/gin-vue-admin/server/const"
+	"github.com/flipped-aurora/gin-vue-admin/server/const"
 	"github.com/flipped-aurora/gin-vue-admin/server/global"
 	"github.com/flipped-aurora/gin-vue-admin/server/model/system"
 	systemReq "github.com/flipped-aurora/gin-vue-admin/server/model/system/request"
@@ -19,9 +19,9 @@ func ClearToken(c *gin.Context) {
 	}
 
 	if net.ParseIP(host) != nil {
-		c.SetCookie(_const.REQUSET_COOKIE_TOKEN_NAME, "", -1, "/", "", false, false)
+		c.SetCookie(constant.REQUSET_COOKIE_TOKEN_NAME, "", -1, "/", "", false, false)
 	} else {
-		c.SetCookie(_const.REQUSET_COOKIE_TOKEN_NAME, "", -1, "/", host, false, false)
+		c.SetCookie(constant.REQUSET_COOKIE_TOKEN_NAME, "", -1, "/", host, false, false)
 	}
 }
 
@@ -33,17 +33,17 @@ func SetToken(c *gin.Context, token string, maxAge int) {
 	}
 
 	if net.ParseIP(host) != nil {
-		c.SetCookie(_const.REQUSET_COOKIE_TOKEN_NAME, token, maxAge, "/", "", false, false)
+		c.SetCookie(constant.REQUSET_COOKIE_TOKEN_NAME, token, maxAge, "/", "", false, false)
 	} else {
-		c.SetCookie(_const.REQUSET_COOKIE_TOKEN_NAME, token, maxAge, "/", host, false, false)
+		c.SetCookie(constant.REQUSET_COOKIE_TOKEN_NAME, token, maxAge, "/", host, false, false)
 	}
 }
 
 func GetToken(c *gin.Context) string {
-	token, _ := c.Cookie(_const.REQUSET_COOKIE_TOKEN_NAME)
+	token, _ := c.Cookie(constant.REQUSET_COOKIE_TOKEN_NAME)
 	if token == "" {
 		j := NewJWT()
-		token = c.Request.Header.Get(_const.REQUEST_HEAER_TOKEN_NAME)
+		token = c.Request.Header.Get(constant.REQUEST_HEAER_TOKEN_NAME)
 		claims, err := j.ParseToken(token)
 		if err != nil {
 			global.GVA_LOG.Error("重新写入cookie token失败,未能成功解析token,请检查请求头是否存在x-token且claims是否为规定结构")
@@ -66,7 +66,7 @@ func GetClaims(c *gin.Context) (*systemReq.CustomClaims, error) {
 
 // GetUserID 从Gin的Context中获取从jwt解析出来的用户ID
 func GetUserID(c *gin.Context) uint {
-	if claims, exists := c.Get(_const.JWT_CLAIMS); !exists {
+	if claims, exists := c.Get(constant.JWT_CLAIMS); !exists {
 		if cl, err := GetClaims(c); err != nil {
 			return 0
 		} else {
@@ -80,7 +80,7 @@ func GetUserID(c *gin.Context) uint {
 
 // GetUserUuid 从Gin的Context中获取从jwt解析出来的用户UUID
 func GetUserUuid(c *gin.Context) uuid.UUID {
-	if claims, exists := c.Get(_const.JWT_CLAIMS); !exists {
+	if claims, exists := c.Get(constant.JWT_CLAIMS); !exists {
 		if cl, err := GetClaims(c); err != nil {
 			return uuid.UUID{}
 		} else {
@@ -94,7 +94,7 @@ func GetUserUuid(c *gin.Context) uuid.UUID {
 
 // GetUserAuthorityId 从Gin的Context中获取从jwt解析出来的用户角色id
 func GetUserAuthorityId(c *gin.Context) uint {
-	if claims, exists := c.Get(_const.JWT_CLAIMS); !exists {
+	if claims, exists := c.Get(constant.JWT_CLAIMS); !exists {
 		if cl, err := GetClaims(c); err != nil {
 			return 0
 		} else {
@@ -108,7 +108,7 @@ func GetUserAuthorityId(c *gin.Context) uint {
 
 // GetUserInfo 从Gin的Context中获取从jwt解析出来的用户角色id
 func GetUserInfo(c *gin.Context) *systemReq.CustomClaims {
-	if claims, exists := c.Get(_const.JWT_CLAIMS); !exists {
+	if claims, exists := c.Get(constant.JWT_CLAIMS); !exists {
 		if cl, err := GetClaims(c); err != nil {
 			return nil
 		} else {
@@ -122,7 +122,7 @@ func GetUserInfo(c *gin.Context) *systemReq.CustomClaims {
 
 // GetUserName 从Gin的Context中获取从jwt解析出来的用户名
 func GetUserName(c *gin.Context) string {
-	if claims, exists := c.Get(_const.JWT_CLAIMS); !exists {
+	if claims, exists := c.Get(constant.JWT_CLAIMS); !exists {
 		if cl, err := GetClaims(c); err != nil {
 			return ""
 		} else {

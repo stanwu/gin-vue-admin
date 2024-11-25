@@ -1,4 +1,4 @@
-package _const
+package constant
 
 // gva 常量文件，用于定义一些常量 , 如果修改此处，请自行修改前端中的/src/const/index.js 中对应的
 const TOKEN_NAME = "x-token"                 // token ，此处是存储在localStorage中的token名称
