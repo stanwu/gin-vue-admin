@@ -63,6 +63,7 @@
   import { useRoute, useRouter } from 'vue-router'
   import { useUserStore } from '@/pinia/modules/user'
   import { fmtTitle } from '@/utils/fmtRouterTitle'
+  import GVA_CONST from "@/const"
 
   defineOptions({
     name: 'HistoryComponent'
@@ -120,7 +121,7 @@
     ]
     router.push({ name: defaultRouter.value })
     contextMenuVisible.value = false
-    sessionStorage.setItem('historys', JSON.stringify(historys.value))
+    sessionStorage.setItem(GVA_CONST.LOCAL_HISTORY, JSON.stringify(historys.value))
   }
   const closeLeft = () => {
     let right
@@ -137,7 +138,7 @@
     if (rightIndex > activeIndex) {
       router.push(right)
     }
-    sessionStorage.setItem('historys', JSON.stringify(historys.value))
+    sessionStorage.setItem(GVA_CONST.LOCAL_HISTORY, JSON.stringify(historys.value))
   }
   const closeRight = () => {
     let right
@@ -154,7 +155,7 @@
     if (leftIndex < activeIndex) {
       router.push(right)
     }
-    sessionStorage.setItem('historys', JSON.stringify(historys.value))
+    sessionStorage.setItem(GVA_CONST.LOCAL_HISTORY, JSON.stringify(historys.value))
   }
   const closeOther = () => {
     let right
@@ -199,7 +200,7 @@
       obj.params = route.params
       historys.value.push(obj)
     }
-    window.sessionStorage.setItem('activeValue', getFmtString(route))
+    window.sessionStorage.setItem(GVA_CONST.TAB_ACTIVE_NAME, getFmtString(route))
   }
 
   const historyMap = ref({})
@@ -261,8 +262,8 @@
       }
       historys.value = historys.value.filter((item) => !item.meta.closeTab)
       setTab(to)
-      sessionStorage.setItem('historys', JSON.stringify(historys.value))
-      activeValue.value = window.sessionStorage.getItem('activeValue')
+      sessionStorage.setItem(GVA_CONST.LOCAL_HISTORY, JSON.stringify(historys.value))
+      activeValue.value = window.sessionStorage.getItem(GVA_CONST.TAB_ACTIVE_NAME)
     },
     { deep: true }
   )
@@ -270,12 +271,12 @@
   watch(
     () => historys.value,
     () => {
-      sessionStorage.setItem('historys', JSON.stringify(historys.value))
+      sessionStorage.setItem(GVA_CONST.LOCAL_HISTORY, JSON.stringify(historys.value))
       historyMap.value = {}
       historys.value.forEach((item) => {
         historyMap.value[getFmtString(item)] = item
       })
-      emitter.emit('setKeepAlive', historys.value)
+      emitter.emit(GVA_CONST.EMITTER_EVENT_SET_KEEP_ALIVE, historys.value)
     },
     {
       deep: true
@@ -311,10 +312,10 @@
         '',
         `${currentUrl}?${currentSearchParams}`
       )
-      sessionStorage.setItem('historys', JSON.stringify(historys.value))
+      sessionStorage.setItem(GVA_CONST.LOCAL_HISTORY, JSON.stringify(historys.value))
     })
 
-    emitter.on('switchTab', async (data) => {
+    emitter.on(GVA_CONST.EMITTER_EVENT_SWITCH_TAB, async (data) => {
       const index = historys.value.findIndex((item) => item.name === data.name)
       if (index < 0) {
         return
@@ -343,11 +344,11 @@
     ]
     setTab(route)
     historys.value =
-      JSON.parse(sessionStorage.getItem('historys')) || initHistorys
-    if (!window.sessionStorage.getItem('activeValue')) {
+      JSON.parse(sessionStorage.getItem(GVA_CONST.LOCAL_HISTORY)) || initHistorys
+    if (!window.sessionStorage.getItem(GVA_CONST.TAB_ACTIVE_NAME)) {
       activeValue.value = getFmtString(route)
     } else {
-      activeValue.value = window.sessionStorage.getItem('activeValue')
+      activeValue.value = window.sessionStorage.getItem(GVA_CONST.TAB_ACTIVE_NAME)
     }
     if (window.sessionStorage.getItem('needCloseAll') === 'true') {
       closeAll()

@@ -4,6 +4,7 @@ import { asyncMenu } from '@/api/menu'
 import { defineStore } from 'pinia'
 import { ref, watchEffect } from 'vue'
 import pathInfo from '@/pathInfo.json'
+import GVA_CONST from '@/const'
 
 const notLayoutRouterArr = []
 const keepAliveRoutersArr = []
@@ -58,7 +59,7 @@ export const useRouterStore = defineStore('router', () => {
     })
     keepAliveRouters.value = Array.from(new Set(keepArrTemp))
   }
-  emitter.on('setKeepAlive', setKeepAliveRouters)
+  emitter.on(GVA_CONST.EMITTER_EVENT_SET_KEEP_ALIVE, setKeepAliveRouters)
 
   const asyncRouters = ref([])
 
@@ -71,7 +72,7 @@ export const useRouterStore = defineStore('router', () => {
   const topActive = ref('')
 
   const setLeftMenu = (name) => {
-    sessionStorage.setItem('topActive', name)
+    sessionStorage.setItem(GVA_CONST.TOP_ACTIVE, name)
     topActive.value = name
     if (menuMap[name]?.children) {
       leftMenu.value = menuMap[name].children
@@ -80,7 +81,7 @@ export const useRouterStore = defineStore('router', () => {
   }
 
   watchEffect(() => {
-    let topActive = sessionStorage.getItem('topActive')
+    let topActive = sessionStorage.getItem(GVA_CONST.TOP_ACTIVE)
     let firstHasChildren = ''
     asyncRouters.value[0]?.children.forEach((item) => {
       if (item.hidden) return

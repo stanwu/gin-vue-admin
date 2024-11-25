@@ -3,7 +3,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { useUserStore } from '@/pinia/modules/user'
 import router from '@/router/index'
 import { ElLoading } from 'element-plus'
-
+import GVA_CONST from '@/const'
 const service = axios.create({
   baseURL: import.meta.env.VITE_BASE_API,
   timeout: 99999
@@ -45,10 +45,10 @@ service.interceptors.request.use(
     const userStore = useUserStore()
     config.headers = {
       'Content-Type': 'application/json',
-      'x-token': userStore.token,
-      'x-user-id': userStore.userInfo.ID,
       ...config.headers
     }
+    config.headers[GVA_CONST.REQUEST_HEAER_TOKEN_NAME] = userStore.token
+    config.headers[GVA_CONST.REQUEST_USER_ID] = userStore.userInfo.ID
     return config
   },
   (error) => {
@@ -71,8 +71,8 @@ service.interceptors.response.use(
     if (!response.config.donNotShowLoading) {
       closeLoading()
     }
-    if (response.headers['new-token']) {
-      userStore.setToken(response.headers['new-token'])
+    if (response.headers[GVA_CONST.NEW_TOKEN_NAME]) {
+      userStore.setToken(response.headers[GVA_CONST.NEW_TOKEN_NAME])
     }
     if (response.data.code === 0 || response.headers.success === 'true') {
       if (response.headers.msg) {

@@ -6,6 +6,7 @@ import { defineStore } from 'pinia'
 import { ref, watch } from 'vue'
 import { useRouterStore } from './router'
 import cookie from 'js-cookie'
+import GVA_CONST from "@/const"
 
 import { useAppStore } from '@/pinia'
 
@@ -20,7 +21,7 @@ export const useUserStore = defineStore('user', () => {
     authority: {}
   })
   const token = ref(
-    window.localStorage.getItem('token') || cookie.get('x-token') || ''
+    window.localStorage.getItem(GVA_CONST.TOKEN_NAME) || cookie.get(GVA_CONST.REQUSET_COOKIE_TOKEN_NAME) || ''
   )
   const setUserInfo = (val) => {
     userInfo.value = val
@@ -37,7 +38,7 @@ export const useUserStore = defineStore('user', () => {
 
   const NeedInit = async () => {
     token.value = ''
-    window.localStorage.removeItem('token')
+    window.localStorage.removeItem(GVA_CONST.TOKEN_NAME)
     await router.push({ name: 'Init', replace: true })
   }
 
@@ -92,9 +93,9 @@ export const useUserStore = defineStore('user', () => {
 
     const isWin = ref(/windows/i.test(navigator.userAgent))
     if (isWin.value) {
-      window.localStorage.setItem('osType', 'WIN')
+      window.localStorage.setItem(GVA_CONST.OS_TYPE_NAME, GVA_CONST.OS_TYPE_WIN)
     } else {
-      window.localStorage.setItem('osType', 'MAC')
+      window.localStorage.setItem(GVA_CONST.OS_TYPE_NAME, GVA_CONST.OS_TYPE_MAC)
     }
 
     // 全部操作均结束，关闭loading并返回
@@ -120,15 +121,15 @@ export const useUserStore = defineStore('user', () => {
   const ClearStorage = async () => {
     token.value = ''
     sessionStorage.clear()
-    window.localStorage.removeItem('token')
-    cookie.remove('x-token')
+    window.localStorage.removeItem(GVA_CONST.TOKEN_NAME)
+    cookie.remove(GVA_CONST.REQUSET_COOKIE_TOKEN_NAME)
     localStorage.removeItem('originSetting')
   }
 
   watch(
     () => token.value,
     () => {
-      window.localStorage.setItem('token', token.value)
+      window.localStorage.setItem(GVA_CONST.TOKEN_NAME, token.value)
     }
   )
 
