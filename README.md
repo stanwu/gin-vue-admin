@@ -45,7 +45,7 @@ npm run serve
 
 如果你覺得這個項目對你有幫助，你可以請原作者喝飲料 :tropical_drink: [點我](https://www.gin-vue-admin.com/coffee/index.html)
 
-# 關於原作者的授權疑慮
+# 關於原作者簡體中文版的授權疑慮
 
 ### 版權分析與建議
 
