@@ -45,7 +45,7 @@ npm run serve
 
 如果你覺得這個項目對你有幫助，你可以請原作者喝飲料 :tropical_drink: [點我](https://www.gin-vue-admin.com/coffee/index.html)
 
-# 關於原作者簡體中文版的授權疑慮
+# 關於原作者簡體中文授權聲明疑慮
 
 ### 版權分析與建議
 
@@ -129,3 +129,29 @@ Apache 2.0已包含商業用途許可，因此要求額外授權的表述可能�
 原授權聲明試圖在Apache 2.0協議基礎上對商業用途施加限制，但因邏輯不一致與表述模糊，可能導致用戶混淆或法律風險。建議原作者根據實際意圖，選擇純Apache 2.0、非商業授權或自定義條款，並增強透明度以提升專案可信度。
 
 本分析旨在協助專案優化授權設計，歡迎原作者或社群提供反饋，共同探討更適合的授權方案。我們衷心感謝原作者為開源社群所做的寶貴貢獻，其努力為眾多開發者提供了有價值的資源。
+
+## 英文授權聲明則比較友善
+
+```
+Commercial considerations
+If you use this project for commercial purposes, please comply with the Apache2.0 agreement and retain the author's technical support statement.
+```
+
+不過如果稍微修正一下會更好 對於某些特別重視合規的非華語開發者可能會稍微介意
+
+潛在問題（若技術支持聲明為額外要求）
+若「retain the author's technical support statement」指的是：
+
+> 要求商業用戶必須標註、宣傳或保留某種非原始條款內的資訊
+
+並將其視為合法使用的前提
+
+則這可能產生以下問題：
+- 變相添加限制：Apache 2.0 不允許增加使用上的額外義務（如宣傳原作者或購買服務）。
+- 與原授權衝突：這樣的聲明違反了「不得增加額外限制」（No additional restrictions）這一條款。
+
+### 結論
+
+英文授權聲明相對友善，但「保留作者的技術支持聲明」可能因模糊性或潛在的額外義務，引發合規性疑慮，特別是對重視法律細節的非華語開發者。建議澄清聲明內容、移除非必要限制，並增強透明度，以確保符合Apache 2.0協議並提升專案的國際可信度。
+
+
