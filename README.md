@@ -2,6 +2,23 @@
 
 我估計其應該花了大量的時間跟精力在這個專案上面
 
+## 安裝補充
+
+原專案在安裝文件已經非常詳盡了，您可以直接參考[相關的安裝文件](https://github.com/flipped-aurora/gin-vue-admin/blob/main/README.md)
+我這邊只補充安裝 MySQL 的部分，因為我是使用 GitHub Codespaces 測試，所以預設環境是沒有 MySQL 的
+
+啟動一個 MySQL 服務，並建立 gva 資料庫
+
+```
+docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=123456 -e MYSQL_DATABASE=gva -p 3306:3306 -d mysql:latest
+```
+
+因為原作者測試密碼為 123456 所以我就使用此預設，如果您可以的話盡量使用亂數取代此密碼
+
+第一次啟動是不能直接登入的，要先點選**前往初始化**進行首次使用的配置
+固定帳號是 admin 所以沒有出現在選項中，預設密碼 123456，MySQL預設是 root
+如果您是使用上面 docker 命令的方式建立 MySQL 的話，root 的密碼也是 123456
+
 ## 相關貢獻者
 
 <a href="https://github.com/flipped-aurora/gin-vue-admin/graphs/contributors">
