@@ -19,7 +19,7 @@ docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=123456 -e MYSQL_DATABAS
 固定帳號是 admin 所以沒有出現在選項中，預設密碼 123456，MySQL預設是 root
 如果您是使用上面 docker 命令的方式建立 MySQL 的話，root 的密碼也是 123456
 
-另外原專案登入之後出現大量的浮水印，我因為工作需要正在幫公司評估類似 [Kendo UI](https://github.com/telerik/kendo-vue/tree/master/examples-standalone/coffee-warehouse) 相關的開發框架，滿滿的浮水印對於有潔癖的我基本上是無法評估跟測試，原因很簡單：原本畫面就已經包含了大量的文字資訊與廣告，再加上浮水印之後讓我的眼睛直接崩潰，不過這個專案是我查詢 perplexity ai 有關 golang + vue + ts 框架項目中最受歡迎的項目，所以我就用 AI [把浮水印暫時移除了](https://github.com/stanwu/gin-vue-admin/commit/9b65c6f4ebc0da0a36d39fdd637ea74c92fd7774) 方便後續的後續的評估跟測試
+另外原專案登入之後出現大量的浮水印，我因為工作需要正在幫公司評估類似 [Kendo UI](https://github.com/telerik/kendo-vue/tree/master/examples-standalone/coffee-warehouse) 相關的開發框架，滿滿的浮水印對於有潔癖的我基本上是無法評估跟測試，原因很簡單：原本畫面就已經包含了大量的文字資訊與選項，再加上浮水印之後讓我的眼睛直接崩潰，不過這個專案是我查詢 perplexity ai 有關 golang + vue + ts 框架項目中最受歡迎的項目，所以我就用 AI [把浮水印暫時移除了](https://github.com/stanwu/gin-vue-admin/commit/9b65c6f4ebc0da0a36d39fdd637ea74c92fd7774) 方便後續的後續的評估跟測試
 
 ![image](https://github.com/user-attachments/assets/d88f1aad-c0c3-4e0b-b20e-2af0acb49378)
 
