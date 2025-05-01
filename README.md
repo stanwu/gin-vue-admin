@@ -1,4 +1,4 @@
-## 感謝 [原作者](https://www.gin-vue-admin.com/about/join.html) 無私的奉獻這個專案
+# 感謝 [原作者](https://www.gin-vue-admin.com/about/join.html) 無私的奉獻這個專案
 
 我估計其應該花了非常大量的時間跟精力在這個專案上面
 
