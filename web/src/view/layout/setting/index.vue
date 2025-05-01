@@ -48,13 +48,6 @@
         <Title title="主题配置"></Title>
         <div class="mt-2 text-md p-2 flex flex-col gap-2">
           <div class="flex items-center justify-between">
-            <div>展示水印</div>
-            <el-switch
-              v-model="config.show_watermark"
-              @change="appStore.toggleConfigWatermark"
-            />
-          </div>
-          <div class="flex items-center justify-between">
             <div>灰色模式</div>
             <el-switch v-model="config.grey" @change="appStore.toggleGrey" />
           </div>

@@ -2,6 +2,7 @@ package system
 
 import (
 	"context"
+
 	sysModel "github.com/flipped-aurora/gin-vue-admin/server/model/system"
 	"github.com/flipped-aurora/gin-vue-admin/server/service/system"
 	"github.com/flipped-aurora/gin-vue-admin/server/utils"
@@ -59,7 +60,7 @@ func (i *initUser) InitializeData(ctx context.Context) (next context.Context, er
 			UUID:        uuid.New(),
 			Username:    "admin",
 			Password:    adminPassword,
-			NickName:    "Mr.奇淼",
+			NickName:    "",
 			HeaderImg:   "https://qmplusimg.henrongyi.top/gva_header.jpg",
 			AuthorityId: 888,
 			Phone:       "17611111111",
