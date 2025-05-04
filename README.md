@@ -1,50 +1,3 @@
-# 感謝 [原作者](https://www.gin-vue-admin.com/about/join.html) 無私的奉獻這個專案
-
-我估計其應該花了非常大量的時間跟精力在這個專案上面
-
-## 安裝補充
-
-原專案在安裝文件已經非常詳盡了，您可以直接參考[相關的安裝文件](https://github.com/flipped-aurora/gin-vue-admin/blob/main/README.md)
-我這邊只補充安裝 MySQL 的部分，因為我是使用 GitHub Codespaces 測試，所以預設環境是沒有 MySQL 的
-
-啟動一個 MySQL 服務，並建立 gva 資料庫
-
-```
-docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=123456 -e MYSQL_DATABASE=gva -p 3306:3306 -d mysql:latest
-```
-
-因為原作者測試密碼為 123456 所以我就使用此預設，如果您可以的話盡量使用亂數取代此密碼
-
-第一次啟動是不能直接登入的，要先點選 **前往初始化** 進行首次使用的配置
-固定帳號是 admin 所以沒有出現在選項中，預設密碼 123456，MySQL預設是 root
-如果您是使用上面 docker 命令的方式建立 MySQL 的話，root 的密碼也是 123456
-
-後端配置
-
-```
-cd server
-go generate
-go run .
-```
-
-前端配置
-
-```
-cd web
-npm install
-npm run serve
-```
-
-## 相關貢獻者
-
-<a href="https://github.com/flipped-aurora/gin-vue-admin/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=flipped-aurora/gin-vue-admin" />
-</a>
-
-### 捐贈原作者
-
-如果你覺得這個項目對你有幫助，你可以請原作者喝飲料 :tropical_drink: [點我](https://www.gin-vue-admin.com/coffee/index.html)
-
 # 關於原作者簡體中文授權聲明疑慮
 
 ### 版權分析與建議
@@ -153,5 +106,41 @@ If you use this project for commercial purposes, please comply with the Apache2.
 ### 結論
 
 英文授權聲明相對友善，但「保留作者的技術支持聲明」可能因模糊性或潛在的額外義務，引發合規性疑慮，特別是對重視法律細節的非華語開發者。建議澄清聲明內容、移除非必要限制，並增強透明度，以確保符合Apache 2.0協議並提升專案的國際可信度。
+
+
+
+
+## 安裝補充
+
+原專案在安裝文件已經非常詳盡了，您可以直接參考[相關的安裝文件](https://github.com/flipped-aurora/gin-vue-admin/blob/main/README.md)
+我這邊只補充安裝 MySQL 的部分，因為我是使用 GitHub Codespaces 測試，所以預設環境是沒有 MySQL 的
+
+啟動一個 MySQL 服務，並建立 gva 資料庫
+
+```
+docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=123456 -e MYSQL_DATABASE=gva -p 3306:3306 -d mysql:latest
+```
+
+因為原作者測試密碼為 123456 所以我就使用此預設，如果您可以的話盡量使用亂數取代此密碼
+
+第一次啟動是不能直接登入的，要先點選 **前往初始化** 進行首次使用的配置
+固定帳號是 admin 所以沒有出現在選項中，預設密碼 123456，MySQL預設是 root
+如果您是使用上面 docker 命令的方式建立 MySQL 的話，root 的密碼也是 123456
+
+後端配置
+
+```
+cd server
+go generate
+go run .
+```
+
+前端配置
+
+```
+cd web
+npm install
+npm run serve
+```
 
 
